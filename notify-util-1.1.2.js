@@ -36,8 +36,8 @@ let icons$1 = {
     error: errorIcon,
     debug: debugIcon,
     spinner: spinnerIcon,
-    info: infoIcon,
-  },
+    info: infoIcon
+  }
 };
 const darkStyles = `
 :root {
@@ -280,15 +280,11 @@ const styles = {
   base: baseStyles,
   light: lightStyles,
   dark: darkStyles,
-  auto: autoStyles,
+  auto: autoStyles
 };
 function deepMerge(target, source) {
   Object.keys(source).forEach((key) => {
-    if (
-      source[key] &&
-      typeof source[key] === "object" &&
-      !(source[key] instanceof Array)
-    ) {
+    if (source[key] && typeof source[key] === "object" && !(source[key] instanceof Array)) {
       if (!target[key]) {
         target[key] = {};
       }
@@ -311,7 +307,7 @@ const config = {
     iconClass: "nu_notification-icon",
     headingClass: "nu_notification-heading",
     bodyClass: "nu_notification-body",
-    progressBarClass: "nu_notification-progress-bar",
+    progressBarClass: "nu_notification-progress-bar"
   },
   icons: {
     success: icons$1.svg.success,
@@ -319,9 +315,9 @@ const config = {
     error: icons$1.svg.error,
     debug: icons$1.svg.debug,
     spinner: icons$1.svg.spinner,
-    info: icons$1.svg.info,
+    info: icons$1.svg.info
   },
-  theme: "light",
+  theme: "light"
 };
 function configure(options) {
   deepMerge(config, options);
@@ -382,8 +378,9 @@ function closeNotification(notification, duration) {
 }
 function enableClickToClose(notification) {
   notification.style.cursor = "pointer";
-  notification.addEventListener("click", () =>
-    closeNotification(notification, 0)
+  notification.addEventListener(
+    "click",
+    () => closeNotification(notification, 0)
   );
 }
 function populateNotification(container, type, heading, body, notificationId) {
@@ -393,25 +390,22 @@ function populateNotification(container, type, heading, body, notificationId) {
     iconClass,
     bodyClass,
     headingClass,
-    progressBarClass,
+    progressBarClass
   } = config.classes;
   const notificationToInject = `
 <div nu_notification="${notificationId}" class="${notificationClass} is-${type}" >
   <div nu_heading-wrapper class="${headingWrapperClass}">
-    <div nu_notification-icon class="${iconClass} is-${type}"">${icons$1.get(
-    type
-  )}</div>
+    <div nu_notification-icon class="${iconClass} is-${type}"">${icons$1.get(type)}</div>
     <div nu_notification-heading="true" class="${headingClass}">${heading}</div>
   </div>
   <div nu_notification-body class="${bodyClass}">${body}</div>
   <div nu_notification-progress-bar class="${progressBarClass}"></div>
 </div>`;
   container.insertAdjacentHTML("beforeend", notificationToInject);
-  const notification = container.querySelector(
-    `[nu_notification="${notificationId}"]`
-  );
+  const notification = container.querySelector(`[nu_notification="${notificationId}"]`);
   const bodyElement = notification.querySelector("[nu_notification-body]");
-  if (!body) bodyElement.style.display = "none";
+  if (!body)
+    bodyElement.style.display = "none";
   return notification;
 }
 const defaultOptions = {
@@ -420,7 +414,7 @@ const defaultOptions = {
   body: "",
   duration: 3500,
   // in ms, null for infinite
-  clickToClose: true,
+  clickToClose: true
 };
 function getOptions(userOptions) {
   let options = { ...defaultOptions, ...userOptions };
@@ -449,7 +443,8 @@ function createNotification(type, userOptions) {
   if (duration) {
     closeNotification(notification, duration);
   }
-  if (clickToClose) enableClickToClose(notification);
+  if (clickToClose)
+    enableClickToClose(notification);
   return notification;
 }
 const notify = {
@@ -458,14 +453,15 @@ const notify = {
   warning: (options) => createNotification("warning", options),
   debug: (options) => createNotification("debug", options),
   info: (options) => createNotification("info", options),
-  spinner: (options) => createNotification("spinner", options),
+  spinner: (options) => createNotification("spinner", options)
 };
 function updateNotification(notification, userOptions) {
   let { heading, body } = getOptions(userOptions);
   const headingElement = notification.querySelector(
     "[nu_notification-heading]"
   );
-  if (headingElement && heading) headingElement.innerHTML = heading;
+  if (headingElement && heading)
+    headingElement.innerHTML = heading;
   const bodyElement = notification.querySelector("[nu_notification-body]");
   if (bodyElement && body) {
     bodyElement.innerHTML = body;
@@ -481,7 +477,7 @@ class Notification {
     heading,
     body = "",
     duration = defaultOptions.duration,
-    clickToClose = defaultOptions.clickToClose,
+    clickToClose = defaultOptions.clickToClose
   }) {
     this.element = null;
     this.type = type;
@@ -493,15 +489,17 @@ class Notification {
       heading: this.heading,
       body: this.body,
       duration: this.duration,
-      clickToClose: this.clickToClose,
+      clickToClose: this.clickToClose
     });
   }
   update(options) {
-    if (!this.element) return;
+    if (!this.element)
+      return;
     updateNotification(this.element, options);
   }
   close() {
-    if (!this.element) return;
+    if (!this.element)
+      return;
     this.element.remove();
     this.element = null;
   }
@@ -509,5 +507,5 @@ class Notification {
 window.notifyUtil = {
   Notification,
   configure,
-  config,
+  config
 };

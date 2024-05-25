@@ -128,6 +128,15 @@ header {
   flex-direction: column;
   gap: 0.875rem;
 }
+footer {
+  text-align: center;
+  width: 100%;
+  color: var(--quiet-text);
+}
+footer a {
+  color: var(--quiet-text);
+  text-decoration: underline;
+}
 .heading-container {
   display: flex;
   gap: 1.5rem;
@@ -149,6 +158,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: none;
 }
 .icon:hover {
   background-color: var(--icon-hover);
@@ -228,6 +238,7 @@ ul {
 li {
   font-size: 1rem;
   line-height: 1.5;
+  color: var(--text);
 }
 .notifications {
   width: 100%;
