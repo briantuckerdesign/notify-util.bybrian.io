@@ -116,7 +116,7 @@ body {
   color: var(--text);
 }
 main {
-  width: 640px;
+  width: 40rem;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -254,4 +254,41 @@ li {
   gap: 0.25rem;
   font-size: 0.75rem;
   color: var(--nu-slate-400);
+  z-index: 1;
+}
+
+html {
+  font-size: calc(0.625rem + 0.41666666666666663vw);
+}
+@media screen and (max-width: 1920px) {
+  html {
+    font-size: calc(0.625rem + 0.41666666666666674vw);
+  }
+}
+@media screen and (max-width: 1440px) {
+  html {
+    font-size: calc(0.8126951092611863rem + 0.20811654526534862vw);
+  }
+}
+@media screen and (max-width: 640px) {
+  html {
+    font-size: calc(0.3739539748953975rem + 1.6736401673640167vw);
+  }
+  .notifications {
+    max-width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .notification_example {
+    width: 100%;
+    align-items: center;
+  }
+  main {
+    width: auto;
+    max-width: 100%;
+  }
+  section.split {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }

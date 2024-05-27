@@ -209,7 +209,7 @@
         <div class="notification_example">
           Info
           <!--Info-->
-          <div class="nu_notification is-info">
+          <div class="nu_notification is-info" nu-info>
             <div class="nu_notification-heading-wrapper">
               <div class="nu_notification-icon is-info">
                 <svg
@@ -261,7 +261,7 @@
         <div class="notification_example">
           Success
           <!--Success-->
-          <div class="nu_notification is-success">
+          <div class="nu_notification is-success" nu-success>
             <div class="nu_notification-heading-wrapper">
               <div class="nu_notification-icon is-success">
                 <svg
@@ -311,7 +311,7 @@
         <div class="notification_example">
           Warning
           <!--Warning-->
-          <div class="nu_notification is-warning">
+          <div class="nu_notification is-warning" nu-warning>
             <div class="nu_notification-heading-wrapper">
               <div class="nu_notification-icon is-warning">
                 <svg
@@ -363,7 +363,7 @@
         <div class="notification_example">
           Error
           <!--Error-->
-          <div class="nu_notification is-error">
+          <div class="nu_notification is-error" nu-error>
             <div class="nu_notification-heading-wrapper">
               <div class="nu_notification-icon is-error">
                 <svg
@@ -420,7 +420,7 @@
         <div class="notification_example">
           Debug
           <!--Debug-->
-          <div class="nu_notification is-debug">
+          <div class="nu_notification is-debug" nu-debug>
             <div class="nu_notification-heading-wrapper">
               <div class="nu_notification-icon is-debug">
                 <svg
@@ -514,7 +514,7 @@
         <div class="notification_example">
           Spinner
           <!--Spinner-->
-          <div class="nu_notification is-spinner">
+          <div class="nu_notification is-spinner" nu-spinner>
             <div class="nu_notification-heading-wrapper">
               <div class="nu_notification-icon is-spinner"></div>
               <div class="nu_notification-heading">Lorem ipsum</div>
@@ -531,43 +531,6 @@
         <a href="https://www.bybrian.io" target="_blank">Brian</a>
       </footer>
     </main>
-    <script>
-      const themeToggle = document.querySelector("[nu_theme-toggle]");
-      themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("nu_dark-mode");
-      });
-
-      notifyUtil.configure({});
-
-      const example1 = document.querySelector("[nu_example-1]");
-      example1.addEventListener("click", () => {
-        new notifyUtil.Notification({
-          type: "info",
-          heading: "Info",
-          body: "Lorem ipsum dolor sit amet, adipiscing elit.",
-          duration: 2000,
-        });
-      });
-      const example2 = document.querySelector("[nu_example-2]");
-      example2.addEventListener("click", async () => {
-        const spinner = new notifyUtil.Notification({
-          type: "spinner",
-          heading: "Loading...",
-          body: "Sit tight.",
-        });
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        spinner.update({
-          heading: "Loading...",
-          body: "Almost there...",
-        });
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        spinner.close();
-        new notifyUtil.Notification({
-          type: "success",
-          heading: "Done!",
-          body: "Cool huh?",
-        });
-      });
-    </script>
+    <script src="./examples.js"></script>
   </body>
 </html>
